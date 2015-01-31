@@ -7,7 +7,7 @@ end
 def fog_test_server_attributes
   image = service.images.find { |i| i.slug == 'ubuntu-14-04-x64' }
   image_id = image.nil? ? 'ubuntu-14-04-x64' : image.id
-  region = service.regions.find { |r| r.id == 'nyc3' }
+  region = service.regions.find { |r| r.id == 'ams3' }
   region_id = region.nil? ? 'nyc3' : region.id
   flavor = service.flavors.find { |f| f.id == '512mb' }
   flavor_id = flavor.nil? ? '512mb' : flavor.id
@@ -30,7 +30,9 @@ def fog_test_server
     server = service.servers.create({
       :name => fog_server_name
     }.merge(fog_test_server_attributes))
-    server.wait_for { ready? }
+    server.wait_for do
+      reload rescue nil; !server.locked
+    end
   end
   server
 end

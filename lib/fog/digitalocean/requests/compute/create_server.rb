@@ -25,11 +25,12 @@ module Fog
           query_hash[:backups] = !!options[:backups_active]
           query_hash[:user_data] = options[:user_data]
 
+          # TODO this should be done posting JSON, maybe in the body?
           request(
             :expects  => [202],
             :method   => 'POST',
             :path     => 'droplets',
-            :query    => query_hash
+            :body     => query_hash.to_json
           )
         end
       end

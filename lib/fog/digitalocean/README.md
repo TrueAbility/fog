@@ -34,3 +34,7 @@ Run:
 ```
 FOG_CREDENTIAL=digitalocean FOG_MOCK=true bundle exec shindont tests/digitalocean
 ```
+
+### TODO
+
+* Pagination

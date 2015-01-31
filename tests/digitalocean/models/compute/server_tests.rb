@@ -40,37 +40,37 @@ Shindo.tests("Fog::Compute[:digitalocean] | server model", ['digitalocean', 'com
     end
 
     test('#reboot') do
-      pending if Fog.mocking? # TODO
+      puts "reboot"
       server.reboot
-      server.wait_for { server.state == 'off' }
-      server.state == 'off'
+      server.wait_for { !server.locked }
+      server.state == 'active'
     end
 
     test('#power_cycle') do
-      pending if Fog.mocking? # TODO
-      server.wait_for { server.ready? }
+      puts "power_cycle"
       server.power_cycle
-      server.wait_for { server.state == 'off' }
-      server.state == 'off'
+      server.wait_for { !server.locked }
+      server.state == 'active'
     end
 
     test('#stop') do
+      puts "stop"
       server.stop
-      server.wait_for { server.state == 'off' }
+      server.wait_for { !server.locked }
       server.state == 'off'
     end
 
     test('#start') do
+      puts "start"
       server.start
-      server.wait_for { ready? }
+      server.wait_for { !server.locked }
       server.ready?
     end
 
     test('#shutdown') do
-      server.start
-      server.wait_for { server.ready? }
+      puts "shutdown"
       server.shutdown
-      server.wait_for { server.state == 'off' }
+      server.wait_for { !server.locked }
       server.state == 'off'
     end
 
@@ -84,7 +84,7 @@ Shindo.tests("Fog::Compute[:digitalocean] | server model", ['digitalocean', 'com
   end
 
   # restore server state
-  server.start
-  server.wait_for { ready? }
+  server.start if !server.ready?
+  server.wait_for { ready? && !server.locked }
 
 end
