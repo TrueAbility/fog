@@ -169,6 +169,12 @@ module Fog
           state == 'active'
         end
 
+        # Snapshot the server
+        def snapshot
+          requires :id
+          service.snapshot_server self.id
+        end
+
         # DigitalOcean API does not support updating server state
         def update
           msg = 'DigitalOcean servers do not support updates'
