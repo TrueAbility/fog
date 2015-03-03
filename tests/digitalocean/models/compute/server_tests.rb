@@ -61,11 +61,8 @@ Shindo.tests("Fog::Compute[:digitalocean] | server model", ['digitalocean', 'com
     end
 
     test("#snapshot") do
-      server.start
-      server.wait_for { server.ready? }
-      server.snapshot
-      server.wait_for { server.ready? }
-      server.ready?
+       server.snapshot("test")
+       true
     end
 
     test('#start') do

@@ -170,9 +170,9 @@ module Fog
         end
 
         # Snapshot the server
-        def snapshot
+        def snapshot(droplet_name)
           requires :id
-          service.snapshot_server self.id
+          service.snapshot_server self.id, droplet_name
         end
 
         # DigitalOcean API does not support updating server state

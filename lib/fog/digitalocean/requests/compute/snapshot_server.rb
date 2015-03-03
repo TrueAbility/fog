@@ -2,39 +2,24 @@ module Fog
   module Compute
     class DigitalOcean
       class Real
-        def snapshot_server(server_id)
+        def snapshot_server(server_id, name)
           request(
             :expects  => [200],
             :method   => 'GET',
-            :path     => "droplets/#{server_id}",
-            :query    => {:type => "snapshot"}
+            :path     => "droplets/#{server_id}/snapshot",
+            :query    => {:name => name}
           )
         end
       end
 
       class Mock
-        def snapshot_server(server_id)
+        def snapshot_server(server_id, name)
           response = Excon::Response.new
           response.status = 200
-
-          mock_data = {
-              "id"              =>  Fog::Mock.random_numbers(1).to_i,
-              "status"          => "in-progress",
-              "type"            => "snapshot",
-              "started_at"      => Time.now.strftime("%FT%TZ"),
-              "completed_at"    => "null",
-              "resource_id"     => Fog::Mock.random_numbers(2).to_i,
-              "resource_type"   => "droplet",
-              "region"          => "nyc3",
-              "region_slug"     => "nyc3"
-          }
           response.body = {
             "status" => "OK",
-            "action" => mock_data
+            "event_id" => Fog::Mock.random_numbers(4).to_i
           }
-          server = self.data[:servers].first
-          server[:status] = "active"
-          self.data[:servers] = [server]
           response
         end
       end
