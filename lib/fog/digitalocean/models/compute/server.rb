@@ -175,6 +175,18 @@ module Fog
           service.snapshot_server self.id, droplet_name
         end
 
+        # Power off the server
+        def power_off
+          requires :id
+          service.power_off_server self.id
+        end
+
+        # Power on the server
+        def power_on
+          requires :id
+          service.power_on_server self.id
+        end
+
         # DigitalOcean API does not support updating server state
         def update
           msg = 'DigitalOcean servers do not support updates'

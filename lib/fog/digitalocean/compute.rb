@@ -29,6 +29,8 @@ module Fog
       request      :create_server
       request      :destroy_server
       request      :reboot_server
+      request      :power_off_server
+      request      :power_on_server
       request      :snapshot_server
       request      :power_cycle_server
       request      :power_off_server
