@@ -23,6 +23,7 @@ module Fog
       request_path 'fog/digitalocean/requests/compute'
       request      :list_servers
       request      :list_images
+      request      :destroy_image
       request      :list_regions
       request      :list_flavors
       request      :get_server_details
