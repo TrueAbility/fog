@@ -9,7 +9,7 @@ module Fog
           request(
             :expects  => [200],
             :method   => 'GET',
-            :path     => "droplets/#{id_or_slug}/destroy"
+            :path     => "images/#{id_or_slug}/destroy"
           )
         end
       end
