@@ -7,6 +7,7 @@ module Fog
           default_options = {
             'force'        => false,
             'linked_clone' => false,
+            'nic_type' => 'VirtualE1000',
           }
           options = default_options.merge(options)
           # Backwards compat for "path" option
@@ -82,8 +83,8 @@ module Fog
 
           # Options['dest_folder']<~String>
           # Grab the destination folder object if it exists else use cloned mach
-          dest_folder = get_raw_vmfolder(options['dest_folder'], options['datacenter']) if options.key?('dest_folder')
-          dest_folder ||= vm_mob_ref.parent
+          dest_folder_path = options.fetch('dest_folder','/') # default to root path ({dc_name}/vm/)
+          dest_folder = get_raw_vmfolder(dest_folder_path, options['datacenter'])
 
           # Options['resource_pool']<~Array>
           # Now find _a_ resource pool to use for the clone if one is not specified
@@ -115,20 +116,30 @@ module Fog
           # Options['network']
           # Build up the config spec
           if ( options.key?('network_label') )
-            #network_obj = datacenter_obj.networkFolder.find(options['network_label'])
             config_spec_operation = RbVmomi::VIM::VirtualDeviceConfigSpecOperation('edit')
-            nic_backing_info = RbVmomi::VIM::VirtualEthernetCardNetworkBackingInfo(:deviceName => options['network_label'])
-              #:deviceName => "Network adapter 1",
-              #:network => network_obj)
+            # Get the portgroup and handle it from there.
+            network = get_raw_network(options['network_label'],options['datacenter'])
+            if ( network.kind_of? RbVmomi::VIM::DistributedVirtualPortgroup)
+                # Create the NIC backing for the distributed virtual portgroup
+                nic_backing_info = RbVmomi::VIM::VirtualEthernetCardDistributedVirtualPortBackingInfo(
+                    :port => RbVmomi::VIM::DistributedVirtualSwitchPortConnection( 
+                                                                                  :portgroupKey => network.key, 
+                                                                                  :switchUuid => network.config.distributedVirtualSwitch.uuid
+                                                                                 ) 
+                )
+            else
+                # Otherwise it's a non distributed port group
+                nic_backing_info = RbVmomi::VIM::VirtualEthernetCardNetworkBackingInfo(:deviceName => options['network_label'])
+            end
             connectable = RbVmomi::VIM::VirtualDeviceConnectInfo(
               :allowGuestControl => true,
               :connected => true,
               :startConnected => true)
-            device = RbVmomi::VIM::VirtualE1000(
+            device = RbVmomi::VIM.public_send "#{options['nic_type']}",
               :backing => nic_backing_info,
               :deviceInfo => RbVmomi::VIM::Description(:label => "Network adapter 1", :summary => options['network_label']),
               :key => options['network_adapter_device_key'],
-              :connectable => connectable)
+              :connectable => connectable
             device_spec = RbVmomi::VIM::VirtualDeviceConfigSpec(
               :operation => config_spec_operation,
               :device => device)
@@ -160,8 +171,11 @@ module Fog
             end
             raise ArgumentError, "domain is required" unless cust_options.key?("domain")
             cust_domain = cust_options['domain']
-            cust_ip_settings = RbVmomi::VIM::CustomizationIPSettings.new(cust_options["ipsettings"]) if cust_options.key?("ipsettings")
-            cust_ip_settings.ip = RbVmomi::VIM::CustomizationFixedIp("ipAddress" => cust_options["ipsettings"]["ip"]) if cust_options.key?("ipsettings")
+            if cust_options.key?("ipsettings")
+              cust_ip_settings = RbVmomi::VIM::CustomizationIPSettings.new(cust_options["ipsettings"])
+              cust_ip_settings.ip = RbVmomi::VIM::CustomizationFixedIp("ipAddress" => cust_options["ipsettings"]["ip"])
+              cust_ip_settings.gateway = cust_options['ipsettings']['gateway']
+            end
             cust_ip_settings ||= RbVmomi::VIM::CustomizationIPSettings.new("ip" => RbVmomi::VIM::CustomizationDhcpIpGenerator.new())
             cust_ip_settings.dnsDomain = cust_domain
             cust_global_ip_settings = RbVmomi::VIM::CustomizationGlobalIPSettings.new
@@ -265,7 +279,7 @@ module Fog
           # Return hash
           {
             'vm_ref'        => new_vm ? new_vm._ref : nil,
-            'new_vm'        => new_vm ? get_virtual_machine("#{options['dest_folder']}/#{options['name']}", options['datacenter']) : nil,
+            'new_vm'        => new_vm ? convert_vm_mob_ref_to_attr_hash(new_vm) : nil,
             'task_ref'      => task._ref
           }
         end

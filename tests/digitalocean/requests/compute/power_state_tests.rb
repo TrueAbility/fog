@@ -1,6 +1,7 @@
 Shindo.tests('Fog::Compute[:digitalocean] | power on/off/shutdown requests',
              ['digitalocean', 'compute']) do
 
+  service = Fog::Compute[:digitalocean]
   server = fog_test_server
 
   tests('success') do

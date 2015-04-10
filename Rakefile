@@ -37,7 +37,7 @@ def gem_file
 end
 
 def replace_header(head, header_name)
-  head.sub!(/(\.#{header_name}\s*= ').*'/) { "#{$1}#{send(header_name)}'"}
+  head.sub!(/(\.#{header_name}\s*= \").*\"/) { "#{$1}#{send(header_name)}\""}
 end
 
 #############################################################################
@@ -52,6 +52,7 @@ task :travis  => ['test', 'test:travis']
 
 Rake::TestTask.new do |t|
   t.pattern = File.join("spec", "**", "*_spec.rb")
+  t.libs << "spec"
 end
 
 namespace :test do
@@ -67,6 +68,12 @@ namespace :test do
   end
   task :ovirt do
       sh("export FOG_MOCK=#{mock} && bundle exec shindont tests/ovirt")
+  end
+  task :openstack do
+      sh("export FOG_MOCK=#{mock} && bundle exec shindont tests/openstack")
+  end
+  task :cloudstack do
+      sh("export FOG_MOCK=#{mock} && bundle exec shindont tests/cloudstack")
   end
 
 end
@@ -95,7 +102,7 @@ task :nuke do
     begin
       compute = Fog::Compute.new(:provider => provider)
       for server in compute.servers
-        Formatador.display_line("[#{provider}] destroying server #{server.identity}")
+        Fog::Formatador.display_line("[#{provider}] destroying server #{server.identity}")
         server.destroy rescue nil
       end
     rescue
@@ -106,7 +113,7 @@ task :nuke do
         for record in zone.records
           record.destroy rescue nil
         end
-        Formatador.display_line("[#{provider}] destroying zone #{zone.identity}")
+        Fog::Formatador.display_line("[#{provider}] destroying zone #{zone.identity}")
         zone.destroy rescue nil
       end
     rescue

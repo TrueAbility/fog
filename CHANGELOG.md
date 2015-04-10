@@ -1,3 +1,396 @@
+## 1.29.0 04/02/2015
+*Hash* 90e96f36e6f70a12f0c6794a149231c337293887
+
+Statistic     | Value
+------------- | --------:
+Collaborators | 2
+Downloads     | 9116129
+Forks         | 1417
+Open Issues   | 83
+Watchers      | 3433
+
+**MVP!** Chris Luo
+
+#### [GleSYS]
+*   Add ability to persist changes on existing server. thanks Christoffer Artmann
+*   add support for SSH key management. thanks Tobias Nygren
+
+#### [glesys]
+*   fix URL encoding of API parameter values. thanks Tobias Nygren
+
+#### [google]
+*   Add credentials tests. thanks Ferran Rodenas
+
+#### [google|compute]
+*   Adding start_server and stop_server. thanks Daniel Broudy
+
+#### [misc]
+*   Initial integration of powerdns. thanks Chris Luo
+*   Fix binspec def. thanks Chris Luo
+*   Debug modularization and integration. thanks Chris Luo
+*   Initial integration of powerdns. thanks Chris Luo
+*   Fix binspec def. thanks Chris Luo
+*   Debug modularization and integration. thanks Chris Luo
+*   gemspec powerdns update. thanks Chris Luo
+*   fix powerdns_spec.rb. thanks Chris Luo
+*   revert modular providers messup. thanks Chris Luo
+*   missing powerdns require in bin. thanks Chris Luo
+*   fix formatting in gemspec. thanks Chris Luo
+*   Remove server.cost.amount from Formats:Details as it breaks the tests when server has a cost that is a non decimail number. thanks Christoffer Artmann
+*   Use OpenVZ and Debian 7.0 64-bit as default options when creating a server as GleSYS has deprecated their Xen platform. thanks Christoffer Artmann
+*   Changed tests to use Vmware and Debian 7 instead of Xen and Debian 6. thanks Christoffer Artmann
+*   Update test to expect CPU Usage as a Nullable Float. thanks Christoffer Artmann
+*   zone.id instead of zone.domain. thanks Hippie Hacker
+*   Move contributing guidelines from fog.io to CONTRIBUTING.md; closes #3509. thanks Isaac Hollander McCreery
+*   CONTRIBUTING: discuss ongoing changes, link to Roadmap in Wiki and relevant issues. thanks Isaac Hollander McCreery
+*   allow self-signed certs. thanks Jared Everett
+*   Adds `ovirt_filtered_api` to list of recognized options for Ovirt service. thanks Jesse Hallett
+*   Treat __sr as a string representing an opaque reference to a storage repository. See https://github.com/fog/fog/pull/3469. thanks Jonas Kongslund
+*   Allow setting gateway option in CustomizationIPSettings. thanks Justin Pratt
+*   Remove superfluous if modifier. thanks Justin Pratt
+*   added requests files for linode image and linode disk api calls. thanks Marques Johansson
+*   use Fog::Mock.random_numbers where appropriate. thanks Marques Johansson
+*   fix mock for linode_disk_createfromimage. thanks Marques Johansson
+*   added tests for the new linode requests. thanks Marques Johansson
+*   use correct api_action in linode_disk_update. thanks Marques Johansson
+*   use correct identifier for linode_disk_createfromimage. thanks Marques Johansson
+*   revise linode expected results. thanks Marques Johansson
+*   add linode.disk.createfromimage(..label..) param. thanks Marques Johansson
+*   add missing ImageID, DiskID from linode.disk.imagize, linode.disk.resize responses. thanks Marques Johansson
+*   Use fog-core 1.27.4 and above. thanks Matt Bostock
+*   Rackspace Neutron Security Groups & Rules. thanks Matt Darby
+*   Better help address for Rackspace. thanks Matt Darby
+*   Added support to requests V3 tokens and provision compute using V3 keystone auth. thanks Miguel Z
+*   Added extra parameters for domain suffixes and gateway, added comments. thanks Oscar Elfving
+*   vm_clone used regular virtual switches no matter what kind of portgroup was named, changed it to look up and handle distributed virtual switches correctly. thanks Oscar Elfving
+*   Fixed Ruby 1.8 breaking comma. thanks Oscar Elfving
+*   Makes the docker api version call use assigned connection. thanks Partha Aji
+*   Test `Provider[]` errors when unknown. thanks Paul Thornthwaite
+*   Tests top level classes interface. thanks Paul Thornthwaite
+*   Do not skip tests when configuration is missing. thanks Paul Thornthwaite
+*   Remove test references to xenserver. thanks Paul Thornthwaite
+*   Apply style rules to fog.gemspec. thanks Paul Thornthwaite
+*   DRY up specs with `spec_helper`. thanks Paul Thornthwaite
+*   Add Simplecov for coverage. thanks Paul Thornthwaite
+*   Fix Xenserver VDI creation. thanks Paulo Henrique Lopes Ribeiro
+*   Remove Atmos Bin. thanks Paulo Henrique Lopes Ribeiro
+*   Add alias attribute to ovirt/compute/volume.rb. thanks Pavol Dilung
+*   Implement affinity groups. thanks Pavol Dilung
+*   Remove dangeling references to pry debugger. thanks Pavol Dilung
+*   Implement affinity group mockups. thanks Pavol Dilung
+*   Fine-tune affinity group mockups. thanks Pavol Dilung
+*   Implement wipe_after_delete attribute for Fog::Compute::Ovirt::Volume class. thanks Pavol Dilung
+*   Adds Planning service to OpenStack provider. thanks Petr Blaho
+*   Adds Role model and list_roles request. thanks Petr Blaho
+*   Adds Plan model, list_plans and get_plan requests. thanks Petr Blaho
+*   Adds template retrieving into Plan. thanks Petr Blaho
+*   Adds create_plan and delete_plan requests. thanks Petr Blaho
+*   Adds adding and removing Roles from Plan. thanks Petr Blaho
+*   Adds patch_plan request and patch method to Plan. thanks Petr Blaho
+*   Adds RESTlike methods to Plan of Planning service. thanks Petr Blaho
+*   Adds brief docs for OpenStack Planning service. thanks Petr Blaho
+*   Adds few examples for OpenStack Planning service. thanks Petr Blaho
+*   Add endpoint for hypervisor stats. thanks Sean Handley
+*   Fix path and include request in catalog. thanks Sean Handley
+*   fixes inconsistent spacing. thanks Tony Ta
+*   removes unnecessary commas. thanks Tony Ta
+*   more consistent spacing around blocks. thanks Tony Ta
+*   fix inconsistent hash spacing. thanks Tony Ta
+*   Extract local storage provider. thanks Ville Lautanala
+*   Revert "allow self-signed certs for Joyent". thanks Wesley Beary
+*   fix minor typo in get_object_https_url. thanks stephen charles baldwin
+
+#### [openstack|identity]
+*   check_token and validate_token - make tenant_id optional. thanks Darren Hague
+*   add tests for check_token and validate_token parameters. thanks Darren Hague
+
+#### [ovirt]
+*   Fix update_interface method. thanks Pavol Dilung
+*   Implement high availability flag an priority attributes. thanks Pavol Dilung
+
+
+## 1.28.0 02/19/2015
+*Hash* d023ee520bcf52072f50f03e22efde344caef936
+
+Statistic     | Value
+------------- | --------:
+Collaborators | 2
+Downloads     | 8526269
+Forks         | 1402
+Open Issues   | 86
+Watchers      | 3382
+
+**MVP!** Peter Souter
+
+#### [HP|storage]
+*   Add support for headers to get_object. thanks Bruz Marzolf
+
+#### [Openstack|Servers|Create]
+*   Allow :volume_size in block_device_mapping_v2. thanks Brandon Dunne
+
+#### [google]
+*   Add support for JSON key format. thanks Ferran Rodenas
+
+#### [joyent|compute]
+*   support for gracefully handling 400 error responses from api Fixes #3434. thanks Kevin Chan
+
+#### [misc]
+*   Port Rackspace Orchestration implementation to OpenStack. thanks Bill Wei
+*   Pass options when get resources from a stack. thanks Bill Wei
+*   Add ubuntu-os-cloud to list of global projects. thanks Chris Gianelloni
+*   get resource pool without name. thanks Chris Thompson
+*   Add nic_type option. thanks Darren Foo
+*   Adding multiple server support for Docker. thanks David Davis
+*   Fixes "Error - undefined method 'delete' for nil:NilClass" when attempting to stop a container. thanks Dmitri Dolguikh
+*   Remove duplicate openstack_region key. thanks Kyle Tolle
+*   Add OpenStack Ironic support. thanks Ladislav Smola
+*   Ming Jin: added list/get compute_resource functions. thanks Ming Jin
+*   Ming Jin: expose effective attribute. thanks Ming Jin
+*   Ming Jin: add isSingleHost attribute to compute resource. thanks Ming Jin
+*   Ming Jin: fix nil usage issue of host. thanks Ming Jin
+*   Ming Jin: added appropriate mocked response. thanks Ming Jin
+*   Fix RDoc build. thanks Paulo Henrique Lopes Ribeiro
+*   Fix small typo. thanks Paulo Henrique Lopes Ribeiro
+*   Remove RiakCS. thanks Paulo Henrique Lopes Ribeiro
+*   Remove tests. thanks Paulo Henrique Lopes Ribeiro
+*   Remove unused credentials. thanks Paulo Henrique Lopes Ribeiro
+*   Remove Bin. thanks Paulo Henrique Lopes Ribeiro
+*   Add Fog::RiakCS as dependency. thanks Paulo Henrique Lopes Ribeiro
+*   Add floating disks manipulation in rbovirt provider. thanks Pavol Dilung
+*   Fix method names errors in exception. thanks Pavol Dilung
+*   Add missing braces. thanks Pavol Dilung
+*   Updates location to get API keys from. thanks Peter Souter
+*   Adds section about SSH key management. thanks Peter Souter
+*   Adds notes about how to bootstrap a server. thanks Peter Souter
+*   Fix typo. thanks Peter Souter
+*   Adds RDoc for #bootstrap, #get(id) and #all(). thanks Peter Souter
+*   Removes not about not being documented. thanks Peter Souter
+*   adding option to set ovirt to use filtered API. thanks Tom Caspy
+*   adding version attribute for ovirt template. thanks Tom Caspy
+*   Remove duplicate lines from code example. thanks Tomas Varaneckas
+*   Use correct variable in code example. thanks Tomas Varaneckas
+*   remove redundant requires. thanks geemus
+*   cloudinit to customspec support. thanks karmab
+*   Use Fog::Formatador. thanks starbelly
+
+#### [vsphere]
+*   new default dest_folder in vm_clone. thanks Chris Thompson
+*   find network by name and dvswitch. thanks Chris Thompson
+*   Supplied a mock implementation for cloudinit_to_customspec. thanks Kevin Menard
+*   searching for VM improved to search whole cluster instead of current folder. thanks Matthew Black
+
+
+## 1.27.0 01/12/2015
+*Hash* 8a8f9a366be09de646536f06e2bcc84eb9229087
+
+Statistic     | Value
+------------- | --------:
+Collaborators | 2
+Downloads     | 8014597
+Forks         | 1382
+Open Issues   | 133
+Watchers      | 3336
+
+**MVP!** Paulo Henrique Lopes Ribeiro
+
+#### [AWS]
+*   Tests covering "bin" interface. thanks Paul Thornthwaite
+*   Extract service mapping. thanks Paul Thornthwaite
+*   Fix test and data pipeline issue. thanks Paul Thornthwaite
+*   Tests covering "bin" interface. thanks Paul Thornthwaite
+*   Extract service mapping. thanks Paul Thornthwaite
+*   Fix test and data pipeline issue. thanks Paul Thornthwaite
+
+#### [GH-3378]
+*   Reinstate JRuby CI runs. thanks Paul Thornthwaite
+
+#### [Openstack]
+*   Update example for Servers.create with :block_device_mapping_v2. thanks Brandon Dunne
+
+#### [aws]
+*   mocks and models for SNS. thanks Eugene Howe
+
+#### [aws/sns]
+*   basic subscription mock. thanks Josh Lane
+
+#### [aws|put_object]
+*   guard against non-us_ascii x-amz-meta-* values. thanks Jan Raasch
+*   do not check user meta data encoding for ruby-1.8.7. thanks Jan Raasch
+
+#### [misc]
+*   add storage_type to rds server. thanks Adam Reese
+*   add models for firewall, egress_firewall, networks, port_forwarding, projects, public_ip_addresses.  Also fix 3015 (support project_id in key calls). thanks Athir Nuaimi
+*   add network offerings model and add functionality to egress_firewall_rule model. thanks Athir Nuaimi
+*   add initial extra testing for cloudstack enhancements. thanks Athir Nuaimi
+*   add a number of tests for cloudstack requests. thanks Athir Nuaimi
+*   add models for firewall, egress_firewall, networks, port_forwarding, projects, public_ip_addresses.  Also fix 3015 (support project_id in key calls). thanks Athir Nuaimi
+*   add network offerings model and add functionality to egress_firewall_rule model. thanks Athir Nuaimi
+*   add initial extra testing for cloudstack enhancements. thanks Athir Nuaimi
+*   fix failing test for cloudstack flavors. thanks Athir Nuaimi
+*   fix failed travis test with cloudstack on ruby 1.8.7. thanks Athir Nuaimi
+*   issue #3275, setting path_style to true for signature_version 4. thanks Christian Ott
+*   path_style debugging. thanks Christian Ott
+*   check path_style for nil. thanks Christian Ott
+*   remove debug msg. thanks Christian Ott
+*   issue #3275, set path_style for get_bucket_location only, remove larger scope. thanks Christian Ott
+*   Add configuration for path_style to RiakCS Provisioning client. Defaults the false if no user input is given (following the style for the s3client default settings). thanks Derek Richard and Karen Wang
+*   rds event subscriptions. thanks Eugene Howe
+*   All I want for Christmas are logs clean of warnings about HTTPS access to my     bucket... thanks Frederic Jean
+*   Revert "Revert "Run Fog tests for Ruby 2.2.0"". thanks Frederick Cheung
+*   Add ovirt_ca_no_verify option for ovirt provider. thanks Ilja Bobkevic
+*   get_topic_attributes handle nil values. thanks Josh Lane
+*   fog-aws module. thanks Josh Lane
+*   fix aws bin. thanks Josh Lane
+*   Rackspace Neutron (Networking) Support. thanks Matt Darby
+*   Rackspace's new CDN (V2). thanks Matt Darby
+*   Launch. thanks Matt Darby
+*   Fix [excon][WARNING] Invalid Excon request keys: :host exception. thanks Mevan Samaratunga
+*   Test service abstraction code loading. thanks Paul Thornthwaite
+*   This limits 1.8.7 to use `activesupport-v3.2.21`. thanks Paul Thornthwaite
+*   Ignore JRuby failures until investigated. thanks Paul Thornthwaite
+*   First batch of deprecation of requests in Xenserver. thanks Paulo Henrique Lopes Ribeiro
+*   Fix build in ruby 1.8.7. thanks Paulo Henrique Lopes Ribeiro
+*   Remove command gem update from travis build. thanks Paulo Henrique Lopes Ribeiro
+*   Added more deprecations. thanks Paulo Henrique Lopes Ribeiro
+*   Added deprecation notice to destroy requests. thanks Paulo Henrique Lopes Ribeiro
+*   Deprecated all requests. thanks Paulo Henrique Lopes Ribeiro
+*   Deprecating methods in models. thanks Paulo Henrique Lopes Ribeiro
+*   Fix indentation. thanks Paulo Henrique Lopes Ribeiro
+*   Removed Serverlove code. thanks Paulo Henrique Lopes Ribeiro
+*   Removed Serverlove tests. thanks Paulo Henrique Lopes Ribeiro
+*   Removed Serverlove bin. thanks Paulo Henrique Lopes Ribeiro
+*   Added modular Serverlove provider as dependency. thanks Paulo Henrique Lopes Ribeiro
+*   Allowing users to fetch ec2 instances in batches. thanks Richard Hall
+*   Grouping requestId, and nextToken together in DescribeInstances#end_element as they perform the same action. thanks Richard Hall
+*   Improving docs for fetching EC2 instances in batches. thanks Richard Hall
+*   Run Fog tests for Ruby 2.2.0. thanks Sean Handley
+*   Revert "Run Fog tests for Ruby 2.2.0". thanks Sean Handley
+*   [vSphere]: Add full path to cluster. thanks Shlomi Zadok
+*   Add support for bucket notification configuration. thanks e Peignier
+*   cleanup leftover files (now in fog-aws). thanks geemus
+*   start_with_cloudinit function  (rbovirt). thanks karmab
+*   Fix misbehavior around connection to slave node in pool. thanks ooVoo LLC
+*   Fixed the issue according pool request #3356. thanks ooVoo LLC
+*   Fix circular argument reference warnings for ruby 2.2. thanks starbelly
+*   应俊 (1):. thanks starbelly
+*   need region param. thanks starbelly
+
+#### [openstack|storage]
+*   fixes around file metadata. thanks geemus
+
+
+## 1.26.0 12/12/2014
+*Hash* 54dde02c11225c2fa63fa82e08bffcc0ad31a719
+
+Statistic     | Value
+------------- | --------:
+Collaborators | 2
+Downloads     | 7729418
+Forks         | 1364
+Open Issues   | 148
+Watchers      | 3299
+
+**MVP!** Colin Hebert
+
+#### [AWS|Storage]
+*   make s3 IO based uploads retryable again. thanks Frederick Cheung
+*   allow signature version to be set to 2 (WIP). thanks Frederick Cheung
+
+#### [DigitalOcean]
+*   Helper methods for flavor,image,region,ips. thanks Daniel Lobato
+
+#### [Docker]
+*   Environment variables support. thanks Daniel Lobato
+
+#### [Openstack|Compute|Server]
+*   Add test boot from block_device_mapping. thanks Brandon Dunne
+*   Add test boot from block_device_mapping_v2. thanks Brandon Dunne
+*   Rewrite block_device_mapping to support. thanks Brandon Dunne
+
+#### [Openstack|Tests]
+*   Add rake subtask for testing only Openstack. thanks Brandon Dunne
+
+#### [aws|auto_scaling]
+*   Add PlacementTenancy attribute for launch configuration. thanks Benjamin Pillet
+
+#### [aws|dns]
+*   Namespace xml to fix create_health_check. thanks James Findley
+
+#### [aws|s3]
+*   add changelog note about 7 day expiry. thanks geemus
+
+#### [aws|storage]
+*   redirect fixes to match latest and v4 sigs. thanks geemus
+*   catch edge cases around redirect region/host. thanks geemus
+
+#### [digitalocean]
+*   reenable tests. thanks geemus
+
+#### [digitalocean|compute]
+*   add private_networking attribute. thanks geemus
+
+#### [google|storage]
+*   Reintroduce workaround for excon headers issue while keeping fix where file_data was not being saved. thanks Antonio
+
+#### [misc]
+*   Accept any 2xx status from head_containers. thanks Ash Wilson
+*   Update describe_network_acls.rb. thanks Bryan Paxton
+*   Add AssumeRoleWithSAML support for AWS. thanks Colin Hebert
+*   Ensure that if the aws credentials requests requiring the signature fail. thanks Colin Hebert
+*   Fix link to documentation. thanks Colin Hebert
+*   Fix code style. thanks Colin Hebert
+*   Add simple test. thanks Colin Hebert
+*   Fix style. thanks Colin Hebert
+*   fixed backups in DigitalOcean. thanks Denis Barishev
+*   Do not throw a warning about falling back to path_style     ... if the user has already explicitly specified path_style (dots are, after all, a perfectly valid thing to have in a bucket name). thanks Eric Herot
+*   Fix typo: Fog::Connection is deprecated, not Fog::XML::Connection. thanks Joe Rafaniello
+*   recognize aws_signature_version option. thanks Jon K Hellan
+*   Use old style date header for signature v2. thanks Jon K Hellan
+*   Use the new build env on Travis. thanks Josh Kalderimis
+*   Enhance images details call by query. thanks Ladislav Smola
+*   Fix path with contained query. thanks Ladislav Smola
+*   Moving Rackspace logic to fog-rackspace. thanks Matt Darby
+*   Moved to Fog::Core. thanks Matt Darby
+*   Revert "Moving Rackspace logic to fog-rackspace". thanks Matt Darby
+*   Rackspace Orchestration Support. thanks Matt Darby
+*   add block_device_mapping_v2. thanks Naoto TAKAHASHI
+*   fixup! example block_device_mapping_v2. thanks Naoto TAKAHASHI
+*   fixup!. thanks Naoto TAKAHASHI
+*   Disable rackspace until fog-rackspace#10 is fixed. thanks Nat Welch
+*   Rescue "Illegal Seek" exception in case body is a pipe or socket. thanks Paul Gideon Dann
+*   Specs for existing `Fog::Bin` interface. thanks Paul Thornthwaite
+*   Detailed checks for `Brightbox` class. thanks Paul Thornthwaite
+*   Revert "Moved to Fog::Core". thanks Paul Thornthwaite
+*   Mark broken DigitalOcean tests as pending. thanks Paul Thornthwaite
+*   Mark additional DigitalOcean test as pending. thanks Paul Thornthwaite
+*   Disable ALL DigitalOcean tests until fixed. thanks Paul Thornthwaite
+*   Remove Rackspace references until reinstated. thanks Paul Thornthwaite
+*   Reinstate Rackspace "bin" checks. thanks Paul Thornthwaite
+*   More specs to cover `Fog` methods. thanks Paul Thornthwaite
+*   Moved Ecloud to a modular gem. thanks Paulo Henrique Lopes Ribeiro
+*   Moved StormOnDemand to its own gem. thanks Paulo Henrique Lopes Ribeiro
+*   Removing Atmos. thanks Paulo Henrique Lopes Ribeiro
+*   Adds openstack_region parameter to OpenStack Identity Service. thanks Renato Furter
+*   Fix deprecation warning. thanks Sean Handley
+*   Require fog/version for User-Agent header. thanks Terry Howe
+*   ensure version is required. thanks geemus
+*   add github release to changelog task. thanks geemus
+*   bump fog-core dep. thanks geemus
+*   Revert "bump fog-core dep". thanks geemus
+*   bump fog-core dep. thanks geemus
+
+#### [opennebula]
+*   lazily require opennebula gem. thanks geemus
+
+#### [storage|aws]
+*   fix redirect follower + v4 sig regression. thanks geemus
+*   further fixes around region redirecting. thanks geemus
+*   make owner setter on file idempotent. thanks geemus
+*   fix docs/code for put_bucket_logging. thanks geemus
+*   more redirect tweaks. thanks geemus
+*   tweak region redirecting. thanks geemus
+
+
 ## 1.25.0 11/18/2014
 *Hash* 4728432a087f6d9661af0f18a660a27b68b3d947
 

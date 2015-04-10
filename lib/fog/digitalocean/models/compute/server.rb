@@ -12,6 +12,13 @@ module Fog
         attribute :vcpus
         attribute :disk
         attribute :locked
+        attribute :image_id
+        attribute :region_id
+        attribute :flavor_id, :aliases => 'size_id'
+        attribute :public_ip_address, :aliases => 'ip_address'
+        attribute :private_ip_address
+        attribute :private_networking
+        attribute :backups_active, :aliases => 'backups_enabled'
         attribute :created_at
 
         attr_writer :ssh_keys
@@ -82,7 +89,7 @@ module Fog
             commands << %{echo "#{public_key}" >> ~/.ssh/authorized_keys}
           end
 
-          # wait for aws to be ready
+          # wait for DigitalOcean to be ready
           wait_for { sshable?(credentials) }
 
           Fog::SSH.new(ssh_ip_address, username, credentials).run(commands)

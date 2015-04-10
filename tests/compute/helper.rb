@@ -55,6 +55,7 @@ def compute_providers
         :protocol => 'tcp'
       },
       :disk_offering_attributes => { :name => "new disk offering", :display_text => 'New Disk Offering' },
+      :egress_firewall_rule_attributes => { :protocol => "tcp", :network_id => "8aacae29-e0a4-4b7b-8a7a-3ee11cfb4362", :cidr_list =>"10.1.1.0/24"},
       :mocked => true
     },
     :glesys   => {
@@ -97,6 +98,18 @@ def compute_providers
         :image_ref  => "0e09fbd6-43c5-448a-83e9-0d3d05f9747e",
         :name       => "fog_#{Time.now.to_i}"
       }
+    },
+    :rackspace  => {
+      :provider_attributes => { :version => :v2 },
+      :server_attributes => {
+        :image_id => "23b564c9-c3e6-49f9-bc68-86c7a9ab5018", # Ubuntu 12.04 LTS (Precise Pangolin)
+        :flavor_id => 2,
+        :name     => "fog_#{Time.now.to_i}"
+      },
+      :mocked => true
+    },
+    :xenserver => {
+      :mocked => false
     }
   }
 end

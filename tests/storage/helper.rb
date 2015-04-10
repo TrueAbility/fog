@@ -3,9 +3,6 @@ def storage_providers
     :aws        => {
       :mocked => true
     },
-    :google     => {
-      :mocked => true
-    },
     :hp         => {
       :mocked => true
     },
@@ -16,6 +13,9 @@ def storage_providers
       :mocked => false
     },
     :ninefold   => {
+      :mocked => false
+    },
+    :rackspace  => {
       :mocked => false
     }
   }
