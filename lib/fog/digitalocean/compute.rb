@@ -22,12 +22,14 @@ module Fog
       request_path 'fog/digitalocean/requests/compute'
       request      :list_servers
       request      :list_images
+      request      :list_snapshots
       request      :list_regions
       request      :list_flavors
       request      :get_server_details
       request      :create_server
       request      :destroy_server
       request      :reboot_server
+      request      :snapshot_server
       request      :power_cycle_server
       request      :power_off_server
       request      :power_on_server
@@ -36,6 +38,7 @@ module Fog
       request      :create_ssh_key
       request      :get_ssh_key
       request      :destroy_ssh_key
+      request      :destroy_image
 
       class Mock
         def self.data
