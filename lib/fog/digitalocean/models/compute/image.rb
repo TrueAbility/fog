@@ -8,6 +8,12 @@ module Fog
         attribute :slug # May be null
         attribute :name
         attribute :distribution
+
+        def destroy
+          requires :id
+          service.destroy_image(self.id)
+        end
+
       end
     end
   end

@@ -133,6 +133,16 @@ module Fog
           true
         end
 
+        def snapshot(name)
+          requires :id
+          service.snapshot_server self.id, name
+        end
+
+        def snapshots
+          requires :id
+          service.list_snapshots self.id
+        end
+        
         # Destroy the server, freeing up the resources.
         #
         # DigitalOcean will stop charging you for the resources
